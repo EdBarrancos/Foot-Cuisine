@@ -1,10 +1,12 @@
 extends %BASE%
 
+############
+#COMPONENTS#
+############
+
 ###########
 #VARIABLES#
 ###########
-
-
 
 ########
 #EVENTS#
