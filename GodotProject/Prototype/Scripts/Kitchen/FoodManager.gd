@@ -4,16 +4,18 @@ extends Node2D
 #VARIABLES#
 ###########
 
-
 var foodList : Array
 onready var currentFoodTarget = 0
 
+var level
 
 ########
 #EVENTS#
 ########
 
-func _ready():
+func Init(level_):
+	level = level_
+	
 	CreateFoodList()
 
 
