@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Prototype/VisualAssets/Tiles/Caldron.png" type="Texture" id=1]
+[ext_resource path="res://Prototype/Scripts/Kitchen/Caldron.gd" type="Script" id=2]
+[ext_resource path="res://Prototype/Shaders/Outline.gdshader" type="Shader" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 3 )
+shader_param/intensity = 50
+shader_param/precision = 0.02
+shader_param/flipColors = null
+shader_param/outline_color = Color( 3.5, 1, 0.9, 1 )
+shader_param/outline_color_2 = Color( 3.5, 1, 0.9, 1 )
+shader_param/use_outline_uv = null
+shader_param/useTexture = null
+
+[node name="Caldron" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 2 )
+texture = ExtResource( 1 )
+
+[connection signal="area_entered" from="." to="." method="_on_Caldron_area_entered"]
