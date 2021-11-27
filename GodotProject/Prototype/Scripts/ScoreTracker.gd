@@ -22,7 +22,6 @@ func GetScore():
 	return score
 	
 func FoodScore():
-	print(score)
 	score += 1
 
 

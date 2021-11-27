@@ -53,8 +53,13 @@ func GetInput():
 	if Input.is_action_pressed("MOVE_NEXT"):
 		holdMove += chargeUp + chargeUpCharge
 		chargeUpCharge += chargeUp/2
+		player.spriteManager.Turn(get_viewport().get_mouse_position())
+		player.spriteManager.StartSquash(holdMove/MAXHOLD)
 	if Input.is_action_just_released("MOVE_NEXT"):
 		velocity = get_viewport().get_mouse_position() - global_position
+		player.spriteManager.Turn(get_viewport().get_mouse_position())
+		player.spriteManager.StopSquash()
+		player.spriteManager.Stretch()
 		Move()
 		ResetVelocity()
 		ResetHold()
