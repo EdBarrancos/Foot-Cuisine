@@ -39,6 +39,7 @@ void fragment(){
 }"
 
 [sub_resource type="ShaderMaterial" id=7]
+resource_local_to_scene = true
 shader = SubResource( 6 )
 shader_param/circle_size = 0.251
 shader_param/circle_color = Color( 0.415686, 0.262745, 0.6, 1 )
