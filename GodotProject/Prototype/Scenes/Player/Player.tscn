@@ -41,6 +41,7 @@ __meta__ = {
 
 [node name="Kitchen_Movement" type="Node2D" parent="."]
 script = ExtResource( 2 )
+slowMo = 4.0
 
 [node name="Shooting" type="Node2D" parent="."]
 script = ExtResource( 4 )
