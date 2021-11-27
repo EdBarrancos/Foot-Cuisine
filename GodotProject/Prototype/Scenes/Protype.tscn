@@ -7,7 +7,7 @@
 [ext_resource path="res://Prototype/Scenes/Storage/Storage.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0, 0.237624, 1 )
+offsets = PoolRealArray( 0, 0.211221, 1 )
 colors = PoolColorArray( 0.486275, 0.247059, 0.345098, 1, 0.498143, 0.263638, 0.356242, 1, 1, 0.964706, 0.827451, 1 )
 
 [sub_resource type="GradientTexture" id=3]
