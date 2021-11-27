@@ -34,10 +34,9 @@ func GetTargetPosition():
 	return level.GetCurrentTarget().position
 	
 func FoodEntered(food):
-	shooting.FoodEntered(food)
-	#slowMo
+	if not shooting.FoodEntered(food):
+		kitchen_movement.ActivateSlowMo()
 	
 func FoodExited(food):
 	if not shooting.FoodExited(food):
-		#Exit Slowmo
-		pass
+		kitchen_movement.DeactivateSlowMo()

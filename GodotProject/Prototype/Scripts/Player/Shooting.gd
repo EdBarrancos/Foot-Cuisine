@@ -30,15 +30,16 @@ func _process(delta):
 func GetInput():
 	if inAreaOfFood:
 		if Input.is_action_pressed("FIRE"):
-			#HOLD
-			pass
+			holdFire += chargeUp + chargeUpCharge
+			chargeUpCharge += chargeUp/2
 		if Input.is_action_just_released("FIRE"):
 			velocity = get_viewport().get_mouse_position() - global_position
-			print(velocity)
 			Shoot(GetTargetFood())
 	
 func Shoot(target):
 	if target:
+		if holdFire > MAXHOLD:
+			holdFire = MAXHOLD
 		target.SetVelocity(velocity.normalized()*holdFire)
 ################
 #UPDATING FOODS#
@@ -50,8 +51,10 @@ func GetTargetFood():
 	return foodInArea[0]
 
 func FoodEntered(food):
+	var before = inAreaOfFood
 	foodInArea.push_back(food)
 	inAreaOfFood = true
+	return before
 	
 func FoodExited(food):
 	foodInArea.remove(foodInArea.find(food))

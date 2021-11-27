@@ -10,7 +10,13 @@ onready var holdMove = 0
 export(float) var chargeUp = 2
 onready var chargeUpCharge = 0
 
+var linearVelocitySaved
+var angularVelocitySaved
+export(float) var slowMo = 3
+
 var player
+
+onready var slowMoActive = false
 
 ########
 #EVENTS#
@@ -25,7 +31,19 @@ func Init(Player):
 func _process(delta):
 	GetInput()
 	
+	
+func ActivateSlowMo():
+	slowMoActive = true
+	angularVelocitySaved = player.get_angular_velocity()
+	linearVelocitySaved = player.get_linear_velocity()
+	
+	player.set_linear_velocity(linearVelocitySaved/slowMo)
+	player.set_angular_velocity(angularVelocitySaved/slowMo)
 
+func DeactivateSlowMo():
+	slowMoActive = false
+	player.set_linear_velocity(linearVelocitySaved)
+	player.set_angular_velocity(angularVelocitySaved)
 
 #######
 #INPUT#
@@ -47,6 +65,11 @@ func GetInput():
 func Move():
 	if holdMove > MAXHOLD:
 		holdMove = MAXHOLD
+	if slowMoActive:
+		linearVelocitySaved = velocity.normalized()*holdMove
+		player.set_linear_velocity(velocity.normalized()*holdMove/slowMo)
+		return
+		
 	player.set_linear_velocity(velocity.normalized()*holdMove)
 
 func ResetVelocity():

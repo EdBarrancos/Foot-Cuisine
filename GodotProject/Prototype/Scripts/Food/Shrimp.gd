@@ -20,7 +20,6 @@ func Init(manager_):
 
 	
 func _on_Area2D_body_entered(body):
-	print("entered")
 	emit_signal("playerInRange", self)
 
 
