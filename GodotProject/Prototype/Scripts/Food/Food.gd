@@ -1,4 +1,4 @@
-extends Node2D
+extends RigidBody2D
 
 class_name Food
 
@@ -25,6 +25,8 @@ func Init(manager_):
 	connect("playerOutRange", manager.GetPlayer(),"FoodExited")
 
 
+func SetVelocity(velocity):
+	set_linear_velocity(velocity)
 ##############
 #MISCELANIOUS#
 ##############

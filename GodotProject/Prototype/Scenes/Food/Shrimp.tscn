@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Prototype/VisualAssets/Food/Shrimp.png" type="Texture" id=1]
 [ext_resource path="res://Prototype/Scripts/Food/Shrimp.gd" type="Script" id=2]
+
+[sub_resource type="PhysicsMaterial" id=3]
+bounce = 0.8
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 16.0
@@ -9,7 +12,12 @@ radius = 16.0
 [sub_resource type="CircleShape2D" id=1]
 radius = 8.0
 
-[node name="Shrimp" type="Node2D"]
+[node name="Shrimp" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 2
+mass = 0.00102041
+physics_material_override = SubResource( 3 )
+gravity_scale = 0.0
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -22,11 +30,7 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
