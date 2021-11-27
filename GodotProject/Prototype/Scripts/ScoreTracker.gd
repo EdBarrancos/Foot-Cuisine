@@ -4,11 +4,13 @@ extends Node2D
 #COMPONENTS#
 ############
 
-onready var score = 0
+onready var scoreSoundDefault = $ScoreDefault
 
 ###########
 #VARIABLES#
 ###########
+
+onready var score = 0
 
 ########
 #EVENTS#
@@ -22,6 +24,7 @@ func GetScore():
 	return score
 	
 func FoodScore():
+	scoreSoundDefault.play()
 	score += 1
 
 

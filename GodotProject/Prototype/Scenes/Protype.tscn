@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Prototype/Scenes/Kitchen/Kitchen.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prototype/Scripts/Protype.gd" type="Script" id=2]
 [ext_resource path="res://Prototype/Scripts/ScoreTracker.gd" type="Script" id=3]
+[ext_resource path="res://Prototype/SoundAssets/ScoreSoundDefault.wav" type="AudioStream" id=4]
 
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.237624, 1 )
@@ -49,3 +50,7 @@ __meta__ = {
 
 [node name="ScoreTracker" type="Node2D" parent="."]
 script = ExtResource( 3 )
+
+[node name="ScoreDefault" type="AudioStreamPlayer" parent="ScoreTracker"]
+stream = ExtResource( 4 )
+bus = "Sound Effects"
