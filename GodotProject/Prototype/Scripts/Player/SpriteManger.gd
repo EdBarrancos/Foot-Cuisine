@@ -5,6 +5,7 @@ extends Node2D
 ############
 
 onready var sprite = $MainSprite
+onready var tween = Tween
 
 ###########
 #VARIABLES#
@@ -16,6 +17,11 @@ export(float) var MAXSQUASH_Y = 0.5
 export(float) var squashIncrease = 0.015
 var squashFactorX
 var squashFactorY
+
+export(float) var MaxAngleOffSet = 2
+var angleOffSet
+onready var shaking = false
+var rng = RandomNumberGenerator.new()
 
 ########
 #EVENTS#
@@ -30,11 +36,18 @@ func Turn(pos):
 func StartSquash(squashPercentage):
 	squashFactorX = squashPercentage * MAXSQUASH_X
 	squashFactorY = squashPercentage * (1-MAXSQUASH_Y)
+	
+	angleOffSet = pow(squashPercentage * MaxAngleOffSet,2)
+	if angleOffSet >= MaxAngleOffSet:
+		angleOffSet = MaxAngleOffSet
 	squashing = true
+	shaking = true
 	
 func StopSquash():
 	squashing = false
 	sprite.set_scale(Vector2(1,1))
+	sprite.offset = Vector2.ZERO
+	shaking = false
 	
 func Stretch():
 	sprite.set_scale(Vector2(1 + squashFactorX,1-squashFactorY))
@@ -51,9 +64,12 @@ func _process(delta):
 		var x = 1 + squashFactorX
 		var y = 1 - squashFactorY
 		sprite.set_scale(Vector2(y,x))
+	if shaking:
+		sprite.offset = Vector2(rng.randf_range(-angleOffSet, angleOffSet),rng.randf_range(-angleOffSet, angleOffSet))
 
 
 
 ##############
 #MISCELANIOUS#
 ##############
+	
