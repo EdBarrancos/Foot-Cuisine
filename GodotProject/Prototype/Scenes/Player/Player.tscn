@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Prototype/VisualAssets/Player/PlayerPrototypeTopDown.png" type="Texture" id=1]
 [ext_resource path="res://Prototype/Scripts/Player/Kitchen_Movement.gd" type="Script" id=2]
 [ext_resource path="res://Prototype/Scripts/Player/Player.gd" type="Script" id=3]
+[ext_resource path="res://Prototype/Scripts/Player/Shooting.gd" type="Script" id=4]
 
 [sub_resource type="PhysicsMaterial" id=2]
 bounce = 0.6
@@ -11,9 +12,12 @@ bounce = 0.6
 radius = 8.0
 
 [node name="Player" type="RigidBody2D"]
-collision_mask = 3
+collision_layer = 5
+collision_mask = 5
 physics_material_override = SubResource( 2 )
 gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
 linear_damp = 0.0
 script = ExtResource( 3 )
 
@@ -37,3 +41,6 @@ __meta__ = {
 
 [node name="Kitchen_Movement" type="Node2D" parent="."]
 script = ExtResource( 2 )
+
+[node name="Shooting" type="Node2D" parent="."]
+script = ExtResource( 4 )

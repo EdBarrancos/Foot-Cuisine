@@ -35,7 +35,6 @@ func GetInput():
 	if Input.is_action_pressed("MOVE_NEXT"):
 		holdMove += chargeUp + chargeUpCharge
 		chargeUpCharge += chargeUp/2
-		print(holdMove)
 	if Input.is_action_just_released("MOVE_NEXT"):
 		velocity = get_viewport().get_mouse_position() - global_position
 		Move()

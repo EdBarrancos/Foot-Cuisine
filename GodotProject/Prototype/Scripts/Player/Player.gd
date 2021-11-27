@@ -5,13 +5,13 @@ extends RigidBody2D
 ############
 
 onready var kitchen_movement = $Kitchen_Movement
-
-var level
+onready var shooting = $Shooting
 
 ###########
 #VARIABLES#
 ###########
 
+var level
 
 ########
 #EVENTS#
@@ -32,3 +32,12 @@ func Init(level_):
 
 func GetTargetPosition():
 	return level.GetCurrentTarget().position
+	
+func FoodEntered(food):
+	shooting.FoodEntered(food)
+	#slowMo
+	
+func FoodExited(food):
+	if not shooting.FoodExited(food):
+		#Exit Slowmo
+		pass

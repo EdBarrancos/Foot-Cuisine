@@ -16,34 +16,15 @@ var level
 func Init(level_):
 	level = level_
 	
-	CreateFoodList()
+	InitAllFood()
 
-
-#func _process(delta):
-#   pass
+func GetPlayer():
+	return level.player
 
 ###########
 #FOOD LIST#
 ###########
 
-
-func CreateFoodList():
+func InitAllFood():
 	for food in get_children():
-		foodList.push_back(food)
-	return foodList
-		
-func UpdateFoodList():
-	for food in get_children():
-		if not foodList.has(food):
-			foodList.push_back(food)
-	return foodList
-
-func GetCurrentFoodItem():
-	return foodList[currentFoodTarget]
-
-func UpdateCurrentFoodItem():
-	if currentFoodTarget + 1 >= foodList.size():
-		currentFoodTarget = 0
-		return currentFoodTarget
-	currentFoodTarget += 1
-	return currentFoodTarget
+		food.Init(self)
