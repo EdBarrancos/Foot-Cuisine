@@ -1,21 +1,49 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Prototype/VisualAssets/Food/Shrimp.png" type="Texture" id=1]
 [ext_resource path="res://Prototype/Scripts/Food/Shrimp.gd" type="Script" id=2]
 [ext_resource path="res://Prototype/Shaders/Outline.gdshader" type="Shader" id=3]
+[ext_resource path="res://Prototype/Scripts/Food/Area2D.gd" type="Script" id=4]
+[ext_resource path="res://Prototype/Scripts/Food/Sprite.gd" type="Script" id=5]
+[ext_resource path="res://icon.png" type="Texture" id=6]
 
 [sub_resource type="PhysicsMaterial" id=3]
 bounce = 0.8
 
 [sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
 shader = ExtResource( 3 )
 shader_param/intensity = 50
-shader_param/precision = 0.01
+shader_param/precision = 0.0
 shader_param/flipColors = false
-shader_param/outline_color = Color( 1, 0.964706, 0.827451, 1 )
-shader_param/outline_color_2 = Color( 1, 0.964706, 0.827451, 1 )
+shader_param/outline_color = Color( 3, 1, 0.9, 1 )
+shader_param/outline_color_2 = Color( 3, 1, 0.9, 1 )
 shader_param/use_outline_uv = false
 shader_param/useTexture = false
+
+[sub_resource type="Shader" id=6]
+code = "shader_type canvas_item;
+
+uniform float circle_size : hint_range(0,1) = 0.5f;
+uniform vec4 circle_color: hint_color = vec4(0);
+uniform vec2 circle_center = vec2(0.5,0.5);
+
+uniform float inner_alpha : hint_range(0,1) = 0.3f;
+
+void fragment(){
+	COLOR = circle_color;
+	COLOR.a = 0f;
+	if (distance(circle_center, UV) < circle_size){
+		COLOR.a = inner_alpha;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+shader_param/circle_size = 0.251
+shader_param/circle_color = Color( 0.415686, 0.262745, 0.6, 1 )
+shader_param/circle_center = Vector2( 0.5, 0.5 )
+shader_param/inner_alpha = 0.4
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 16.0
@@ -31,14 +59,21 @@ physics_material_override = SubResource( 3 )
 gravity_scale = 0.0
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="SpriteManager" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="SpriteManager"]
 material = SubResource( 5 )
 texture = ExtResource( 1 )
+
+[node name="Range" type="Sprite" parent="SpriteManager"]
+material = SubResource( 7 )
+texture = ExtResource( 6 )
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 4
-monitorable = false
+script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )
