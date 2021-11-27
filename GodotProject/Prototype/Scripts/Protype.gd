@@ -5,6 +5,8 @@ extends Node2D
 ############
 
 onready var kitchen = $Kitchen
+onready var scoreLabel = $CanvasLayer/Label
+onready var scoreTracker = $ScoreTracker
 
 ###########
 #VARIABLES#
@@ -16,12 +18,10 @@ onready var kitchen = $Kitchen
 
 func _ready():
 	kitchen.Init()
+	
+func _process(_delta):
+	scoreLabel.set_text(str("SCORE: ", scoreTracker.GetScore()))
 
-
-#func _process(delta):
-#   pass
-
-
-##############
-#MISCELANIOUS#
-##############
+####################
+#SAVE AND LOAD GAME#
+####################
