@@ -53,10 +53,14 @@ func GetTargetFood():
 func FoodEntered(food):
 	var before = inAreaOfFood
 	foodInArea.push_back(food)
+	if not before:
+		food.SetTarget(true)
 	inAreaOfFood = true
 	return before
 	
 func FoodExited(food):
+	if GetTargetFood() == food:
+		food.SetTarget(false)
 	foodInArea.remove(foodInArea.find(food))
 	if foodInArea.size() <= 0:
 		inAreaOfFood = false

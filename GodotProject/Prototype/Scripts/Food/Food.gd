@@ -27,9 +27,9 @@ func Init(manager_):
 
 func SetVelocity(velocity):
 	set_linear_velocity(velocity)
-##############
-#MISCELANIOUS#
-##############
+	
+func Destroy():
+	manager.DestroyFood(self)
 
 
 

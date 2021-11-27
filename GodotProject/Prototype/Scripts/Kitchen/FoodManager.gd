@@ -25,6 +25,9 @@ func GetPlayer():
 #FOOD LIST#
 ###########
 
+func DestroyFood(food):
+	food.queue_free()
+
 func InitAllFood():
 	for food in get_children():
 		food.Init(self)
