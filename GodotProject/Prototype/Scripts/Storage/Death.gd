@@ -1,12 +1,8 @@
-extends Node2D
+extends Area2D
 
 ############
 #COMPONENTS#
 ############
-
-onready var player = $PlayerStorage
-
-onready var spawnManager = $SpawnManager
 
 ###########
 #VARIABLES#
@@ -17,8 +13,7 @@ onready var spawnManager = $SpawnManager
 ########
 
 func _ready():
-	player.Init(self)
-	spawnManager.Init(self)
+	pass # Replace with function body.
 
 
 #func _process(delta):
@@ -28,3 +23,7 @@ func _ready():
 ##############
 #MISCELANIOUS#
 ##############
+
+
+func _on_Death_body_entered(body):
+	body.Destroy()

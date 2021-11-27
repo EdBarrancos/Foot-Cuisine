@@ -24,6 +24,10 @@ config/name="MiniJam94"
 run/main_scene="res://Prototype/Scenes/Protype.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://Prototype/Scripts/Global.gd"
+
 [display]
 
 window/size/width=256
