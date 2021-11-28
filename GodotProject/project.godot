@@ -30,12 +30,11 @@ Global="*res://Prototype/Scripts/Global.gd"
 
 [display]
 
-window/size/width=256
-window/size/height=224
-window/size/test_width=1024
-window/size/test_height=896
+window/size/height=896
+window/size/fullscreen=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
+window/stretch/shrink=4.0
 
 [importer_defaults]
 
@@ -88,6 +87,11 @@ LEFT={
 RESTART={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+FULL_SCREEN={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777254,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

@@ -11,7 +11,8 @@
 [ext_resource path="res://Prototype/SoundAssets/FireFoodSound.wav" type="AudioStream" id=9]
 
 [sub_resource type="PhysicsMaterial" id=2]
-bounce = 0.6
+friction = 0.5
+bounce = 0.7
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 8.0
@@ -48,6 +49,7 @@ __meta__ = {
 [node name="Kitchen_Movement" type="Node2D" parent="."]
 script = ExtResource( 2 )
 MAXHOLD = 275.0
+MAXVELOCITY = 315.0
 chargeUp = 3.0
 slowMo = 4.0
 

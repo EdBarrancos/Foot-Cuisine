@@ -5,6 +5,7 @@ extends Node2D
 ###########
 
 export(float) var MAXHOLD = 250
+export(float) var MAXVELOCITY = 300
 onready var velocity = Vector2.ZERO
 onready var holdMove = 0
 export(float) var chargeUp = 2
@@ -91,3 +92,16 @@ func ResetVelocity():
 func ResetHold():
 	holdMove = 0
 	chargeUpCharge = 0
+	
+func MultiplyVelocity(value):
+	if value > 1.5:
+		value = 1.5
+	if slowMoActive:
+		linearVelocitySaved *= value
+		if linearVelocitySaved.length() > MAXVELOCITY:
+			linearVelocitySaved.clamped(MAXVELOCITY)
+	else:
+		var newVel = player.get_linear_velocity()*value
+		if newVel.length() > MAXVELOCITY:
+			newVel.clamped(MAXVELOCITY)
+		player.set_linear_velocity(newVel)

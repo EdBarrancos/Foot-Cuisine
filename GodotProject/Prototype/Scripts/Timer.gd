@@ -26,13 +26,21 @@ func _ready():
 func InitiateGame():
 	currentTime = DEFAULTTIME
 	timer.start()
+
+func Stop():
+	timer.stop()
 	
 func GetMinutes():
-	return int(currentTime / 60)
+	if currentTime:
+		return int(currentTime / 60)
+	else: 
+		return 0
 
 func GetSeconds():
-	return currentTime - (int(currentTime / 60) * 60)
-
+	if currentTime:
+		return currentTime - (int(currentTime / 60) * 60)
+	else:
+		return 0
 
 ##############
 #MISCELANIOUS#

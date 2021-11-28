@@ -80,7 +80,6 @@ func Spawn():
 func _on_Timer_timeout():
 	Spawn()
 
-
 func _on_FoodManager_good_food():
 	ResetValues()
 

@@ -17,6 +17,8 @@ var MaxScore
 
 var rng = RandomNumberGenerator.new()
 
+signal score
+
 ########
 #EVENTS#
 ########
@@ -37,12 +39,14 @@ func GetScore():
 	
 func FoodScore():
 	rng.randomize()
-	var pitch = 1 + ((combo-1)*2)/10
+	var pitch = 1 + ((combo-1)*2)/10.0
 	scoreSoundDefault.pitch_scale = pitch
 	scoreSoundDefault.play()
 	score += 1*combo
 	
 	IncreaseCombo()
+	
+	get_parent().kitchenInst.player.MultiplyVelocity(1 + (combo*2)/10.0)
 	
 func EndGame():
 	if score > MaxScore:
@@ -61,9 +65,11 @@ func _on_Kitchen_moved():
 	
 func ResetCombo():
 	combo = 1
+	emit_signal("score")
 	
 func IncreaseCombo():
 	combo += 1
+	emit_signal("score")
 
 
 ###############
@@ -72,7 +78,7 @@ func IncreaseCombo():
 
 func save_dict():
 	var save_dict = {
-		"Max Score" : MaxScore,
+		"MaxScore" : MaxScore,
 	}
 	return save_dict
 
@@ -89,7 +95,6 @@ func load_game():
 	save_game.open("user://FootKitchen.save", File.READ)
 	
 	var variable_data = parse_json(save_game.get_line())
-	
 	for i in variable_data:
 		set(i, variable_data[i])
 	

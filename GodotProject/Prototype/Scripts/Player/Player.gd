@@ -52,7 +52,7 @@ func _integrate_forces(state):
 ##########
 
 func MultiplyVelocity(value):
-	pass
+	kitchen_movement.MultiplyVelocity(value)
 
 #########
 #KITCHEN#
