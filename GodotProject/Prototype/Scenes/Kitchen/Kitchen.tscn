@@ -19,6 +19,8 @@ script = ExtResource( 4 )
 __meta__ = {
 "_edit_lock_": true
 }
+maxNumberOfFood = 7
+lowNumberOfFood = 3
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )

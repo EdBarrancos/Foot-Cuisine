@@ -5,6 +5,7 @@ extends Node2D
 ############
 
 onready var hitWall = $HitWallSound
+onready var move = $MoveSound
 onready var fireFood = $FireFoodSound
 
 ###########
@@ -21,6 +22,9 @@ func _ready():
 
 func PlayHitWall():
 	hitWall.play()
+	
+func PlayMove():
+	move.play()
 	
 func PlayFireFood():
 	fireFood.play()

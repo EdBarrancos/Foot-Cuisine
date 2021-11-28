@@ -24,6 +24,9 @@ var newPosition
 #EVENTS#
 ########
 
+func Moved():
+	level.emit_signal("moved")
+
 func Init(level_):
 	level = level_
 	kitchen_movement.Init(self)
@@ -43,6 +46,13 @@ func _integrate_forces(state):
 	if updatePosition:
 		state.transform = Transform2D(0,newPosition)
 		updatePosition = false
+
+##########
+#VELOCITY#
+##########
+
+func MultiplyVelocity(value):
+	pass
 
 #########
 #KITCHEN#

@@ -68,6 +68,8 @@ func GetInput():
 		Move()
 		ResetVelocity()
 		ResetHold()
+		player.audioManager.PlayMove()
+		
 ##########
 #VELOCITY#
 ##########
@@ -81,7 +83,8 @@ func Move():
 		return
 		
 	player.set_linear_velocity(velocity.normalized()*holdMove)
-
+	player.Moved()
+	
 func ResetVelocity():
 	velocity = Vector2.ZERO
 	

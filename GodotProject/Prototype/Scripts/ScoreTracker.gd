@@ -37,15 +37,33 @@ func GetScore():
 	
 func FoodScore():
 	rng.randomize()
-	var pitch = rng.randf_range(1,1.3)
+	var pitch = 1 + ((combo-1)*2)/10
 	scoreSoundDefault.pitch_scale = pitch
 	scoreSoundDefault.play()
-	score += 1
+	score += 1*combo
+	
+	IncreaseCombo()
 	
 func EndGame():
 	if score > MaxScore:
 		MaxScore = score
 	save_game()
+	
+#######
+#COMBO#
+#######
+
+func GetCombo():
+	return combo
+	
+func _on_Kitchen_moved():
+	ResetCombo()
+	
+func ResetCombo():
+	combo = 1
+	
+func IncreaseCombo():
+	combo += 1
 
 
 ###############
@@ -76,3 +94,6 @@ func load_game():
 		set(i, variable_data[i])
 	
 	save_game.close()
+
+
+
