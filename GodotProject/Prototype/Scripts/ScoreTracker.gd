@@ -11,6 +11,7 @@ onready var scoreSoundDefault = $ScoreDefault
 ###########
 
 onready var score = 0
+onready var combo = 1
 
 var MaxScore
 
@@ -22,6 +23,11 @@ func _ready():
 	load_game()
 	if MaxScore == null:
 		MaxScore = 0
+		
+		
+func InitiateGame():
+	score = 0
+	combo = 1
 
 
 func GetScore():

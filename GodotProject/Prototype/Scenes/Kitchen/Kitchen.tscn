@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Prototype/TileSet/Protype.tres" type="TileSet" id=1]
-[ext_resource path="res://Prototype/Scenes/Food/Shrimp.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Prototype/Scenes/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Prototype/Scripts/Kitchen/FoodManager.gd" type="Script" id=4]
 [ext_resource path="res://Prototype/Scripts/Kitchen/Kitchen.gd" type="Script" id=5]
 [ext_resource path="res://Prototype/Scenes/Kitchen/Caldron.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Prototype/Scripts/Kitchen/CladronManager.gd" type="Script" id=7]
+[ext_resource path="res://Prototype/Scripts/Kitchen/Spawner.gd" type="Script" id=8]
 
 [node name="Kitchen" type="Node2D"]
 script = ExtResource( 5 )
@@ -19,18 +19,6 @@ script = ExtResource( 4 )
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="Shrimp" parent="FoodManager" instance=ExtResource( 2 )]
-position = Vector2( 72, 80 )
-
-[node name="Shrimp2" parent="FoodManager" instance=ExtResource( 2 )]
-position = Vector2( 184, 72 )
-
-[node name="Shrimp3" parent="FoodManager" instance=ExtResource( 2 )]
-position = Vector2( 160, 160 )
-
-[node name="Shrimp4" parent="FoodManager" instance=ExtResource( 2 )]
-position = Vector2( 128, 112 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -51,3 +39,11 @@ position = Vector2( 8, 104 )
 
 [node name="Caldron2" parent="CladronManager" instance=ExtResource( 6 )]
 position = Vector2( 248, 120 )
+
+[node name="Spawner" type="Node2D" parent="."]
+script = ExtResource( 8 )
+defaultTime = 1.0
+
+[node name="Timer" type="Timer" parent="Spawner"]
+
+[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_Timer_timeout"]

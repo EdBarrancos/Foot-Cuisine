@@ -25,6 +25,11 @@ func GetPlayer():
 #FOOD LIST#
 ###########
 
+func SpawnFood(foodInstance, pos):
+	add_child(foodInstance)
+	foodInstance.Init(self)
+	foodInstance.position = pos
+
 func DestroyFood(food):
 	food.queue_free()
 
