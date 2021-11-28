@@ -45,5 +45,6 @@ script = ExtResource( 8 )
 defaultTime = 1.0
 
 [node name="Timer" type="Timer" parent="Spawner"]
+wait_time = 2.267
 
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_Timer_timeout"]
