@@ -66,6 +66,8 @@ func GetSpawnPosition():
 	var y = rng.randi_range(quadrants[quadrant][0].y,quadrants[quadrant][1].y)
 	return Vector2(x,y)
 	
-
-func _on_Timer_timeout():
+func Spawn():
 	manager.foodManager.SpawnFood(spawnableFood[rng.randi_range(0,spawnableFood.size() - 1)].instance(), GetSpawnPosition())
+	
+func _on_Timer_timeout():
+	Spawn()
