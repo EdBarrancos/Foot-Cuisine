@@ -17,12 +17,14 @@ onready var chargeUpCharge = 0
 onready var inAreaOfFood = false
 onready var foodInArea = []
 
+var player
+
 ########
 #EVENTS#
 ########
 
-func _ready():
-	pass # Replace with function body.
+func Init(p):
+	player = p
 	
 func _process(delta):
 	GetInput()
@@ -35,6 +37,7 @@ func GetInput():
 		if Input.is_action_just_released("FIRE"):
 			velocity = get_viewport().get_mouse_position() - global_position
 			Shoot(GetTargetFood())
+			player.audioManager.PlayFireFood()
 	
 func Shoot(target):
 	if target:

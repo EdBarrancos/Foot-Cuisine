@@ -15,6 +15,8 @@ onready var combo = 1
 
 var MaxScore
 
+var rng = RandomNumberGenerator.new()
+
 ########
 #EVENTS#
 ########
@@ -34,6 +36,9 @@ func GetScore():
 	return score
 	
 func FoodScore():
+	rng.randomize()
+	var pitch = rng.randf_range(1,1.3)
+	scoreSoundDefault.pitch_scale = pitch
 	scoreSoundDefault.play()
 	score += 1
 	

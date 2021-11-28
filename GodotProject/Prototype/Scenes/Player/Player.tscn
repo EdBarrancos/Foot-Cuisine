@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Prototype/VisualAssets/Player/PlayerPrototypeTopDown.png" type="Texture" id=1]
 [ext_resource path="res://Prototype/Scripts/Player/Kitchen_Movement.gd" type="Script" id=2]
 [ext_resource path="res://Prototype/Scripts/Player/Player.gd" type="Script" id=3]
 [ext_resource path="res://Prototype/Scripts/Player/Shooting.gd" type="Script" id=4]
 [ext_resource path="res://Prototype/Scripts/Player/SpriteManger.gd" type="Script" id=5]
+[ext_resource path="res://Prototype/Scripts/Player/AudioManager.gd" type="Script" id=6]
+[ext_resource path="res://Prototype/SoundAssets/HitWallSound.wav" type="AudioStream" id=7]
+[ext_resource path="res://Prototype/SoundAssets/FireFoodSound.wav" type="AudioStream" id=8]
 
 [sub_resource type="PhysicsMaterial" id=2]
 bounce = 0.6
@@ -43,10 +46,25 @@ __meta__ = {
 
 [node name="Kitchen_Movement" type="Node2D" parent="."]
 script = ExtResource( 2 )
+MAXHOLD = 275.0
+chargeUp = 3.0
 slowMo = 4.0
 
 [node name="Shooting" type="Node2D" parent="."]
 script = ExtResource( 4 )
+MAXHOLD = 275.0
+chargeUp = 4.0
+
+[node name="AudioManager" type="Node2D" parent="."]
+script = ExtResource( 6 )
+
+[node name="HitWallSound" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource( 7 )
+bus = "Sound Effects"
+
+[node name="FireFoodSound" type="AudioStreamPlayer2D" parent="AudioManager"]
+stream = ExtResource( 8 )
+bus = "Sound Effects"
 
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Player_body_exited"]

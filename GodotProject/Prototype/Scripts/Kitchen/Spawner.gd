@@ -18,7 +18,8 @@ var time
 onready var rng = RandomNumberGenerator.new()
 
 var shrimp = preload("res://Prototype/Scenes/Food/Shrimp.tscn")
-onready var spawnableFood = [shrimp]
+var cheese = preload("res://Prototype/Scenes/Food/Cheese.tscn")
+onready var spawnableFood = [shrimp, cheese]
 
 var firstQuadrant
 var secondQuadrant
@@ -34,6 +35,9 @@ var quadrants
 
 func Init(manager_):
 	manager = manager_
+	
+	ResetValues()
+	
 	timer.start()
 	
 	firstQuadrant = manager.GetFirstQuadrant()
@@ -42,9 +46,13 @@ func Init(manager_):
 	forthQuadrant = manager.GetForthQuadrant()
 	quadrants = [firstQuadrant, secondQuadrant, thirdQuadrant, forthQuadrant]
 
-#func _process(delta):
-#   pass
+func ResetValues():
+	time = defaultTime
+	timer.set_wait_time(time)
 
+func SpeedUp():
+	time = defaultTime/3
+	timer.set_wait_time(time)
 
 ##############
 #MISCELANIOUS#
@@ -71,3 +79,11 @@ func Spawn():
 	
 func _on_Timer_timeout():
 	Spawn()
+
+
+func _on_FoodManager_good_food():
+	ResetValues()
+
+
+func _on_FoodManager_low_food():
+	SpeedUp()

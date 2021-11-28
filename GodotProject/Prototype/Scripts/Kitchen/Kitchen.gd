@@ -12,10 +12,11 @@ onready var spawner = $Spawner
 #VARIABLES#
 ###########
 
-onready var tileSize = 16
+onready var tileSize = 18
 onready var width = 256
 onready var height = 224
 
+onready var playerInitialPosition = Vector2(32,192)
 
 ########
 #EVENTS#
@@ -25,6 +26,18 @@ func Init():
 	player.Init(self)
 	foodManager.Init(self)
 	spawner.Init(self)
+	
+func InitiateGame():
+	player.SetPos(playerInitialPosition)
+	foodManager.DestroyAllFood()
+	spawner.ResetValues()
+	player.set_angular_velocity(2)
+	
+	for _i in range(3):
+		spawner.Spawn()
+
+func EndGame():
+	player.EndGame(playerInitialPosition)
 	
 #########
 #MARGINS#

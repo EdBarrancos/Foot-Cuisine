@@ -9,11 +9,16 @@ onready var shooting = $Shooting
 
 onready var spriteManager = $SpriteManger
 
+onready var audioManager = $AudioManager
+
 ###########
 #VARIABLES#
 ###########
 
 var level
+
+onready var updatePosition = false
+var newPosition
 
 ########
 #EVENTS#
@@ -22,11 +27,22 @@ var level
 func Init(level_):
 	level = level_
 	kitchen_movement.Init(self)
+	shooting.Init(self)
 
+func EndGame(nPos):
+	spriteManager.StopSquash()
+	spriteManager.StopStretch()
+	set_linear_velocity(Vector2.ZERO)
+	SetPos(nPos)
 
-#func _process(delta):
-#   pass
+func SetPos(newPosition_):
+	updatePosition = true
+	newPosition = newPosition_
 
+func _integrate_forces(state):
+	if updatePosition:
+		state.transform = Transform2D(0,newPosition)
+		updatePosition = false
 
 #########
 #KITCHEN#
@@ -47,6 +63,8 @@ func FoodExited(food):
 func _on_Player_body_entered(body):
 	spriteManager.StopStretch()
 	spriteManager.StartSquash(1)
+	
+	audioManager.PlayHitWall()
 	
 
 
