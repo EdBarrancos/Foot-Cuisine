@@ -1,14 +1,14 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Prototype/SoundAssets/Music/Game2N.wav" type="AudioStream" id=1]
+[ext_resource path="res://Prototype/SoundAssets/Music/Game2.wav" type="AudioStream" id=1]
 [ext_resource path="res://Prototype/Scripts/Protype.gd" type="Script" id=2]
 [ext_resource path="res://Prototype/Scripts/ScoreTracker.gd" type="Script" id=3]
 [ext_resource path="res://Prototype/SoundAssets/ScoreSoundDefault.wav" type="AudioStream" id=4]
 [ext_resource path="res://Prototype/Scripts/Timer.gd" type="Script" id=5]
 [ext_resource path="res://Font/Mario-Kart-DS.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://Prototype/SoundAssets/Music/Game1N.wav" type="AudioStream" id=7]
-[ext_resource path="res://Prototype/SoundAssets/Music/Game0N.wav" type="AudioStream" id=8]
-[ext_resource path="res://Prototype/SoundAssets/Music/MenuN.wav" type="AudioStream" id=9]
+[ext_resource path="res://Prototype/SoundAssets/Music/Assets_Sounds_MenuN.wav" type="AudioStream" id=7]
+[ext_resource path="res://Prototype/SoundAssets/Music/Assets_Sounds_Game1N.wav" type="AudioStream" id=8]
+[ext_resource path="res://Prototype/SoundAssets/Music/Assets_Sounds_Game0N.wav" type="AudioStream" id=9]
 [ext_resource path="res://Prototype/Scripts/MusicManger.gd" type="Script" id=12]
 
 [sub_resource type="Gradient" id=2]
@@ -116,15 +116,15 @@ DEFAULTTIME = 35
 script = ExtResource( 12 )
 
 [node name="MainMenu" type="AudioStreamPlayer" parent="MusicManger"]
-stream = ExtResource( 9 )
+stream = ExtResource( 7 )
 bus = "Music"
 
 [node name="Game0" type="AudioStreamPlayer" parent="MusicManger"]
-stream = ExtResource( 8 )
+stream = ExtResource( 9 )
 bus = "Music"
 
 [node name="Game1" type="AudioStreamPlayer" parent="MusicManger"]
-stream = ExtResource( 7 )
+stream = ExtResource( 8 )
 bus = "Music"
 
 [node name="Game2" type="AudioStreamPlayer" parent="MusicManger"]

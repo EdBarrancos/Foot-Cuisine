@@ -139,7 +139,7 @@ func ChangeToMainMenu():
 func _on_ScoreTracker_score():
 	if scoreTracker.combo == 1:
 		musicPlayer.ChangeMusic(musicPlayer.tracks.g0)
-	elif scoreTracker.combo > 1 and scoreTracker.combo <=3:
+	elif scoreTracker.combo > 1 and scoreTracker.combo <=4:
 		musicPlayer.ChangeMusic(musicPlayer.tracks.g1)
-	elif scoreTracker.combo > 3:
+	elif scoreTracker.combo > 4:
 		musicPlayer.ChangeMusic(musicPlayer.tracks.g2)
