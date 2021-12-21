@@ -5,6 +5,7 @@ extends Node2D
 ############
 
 onready var highScoreLabel = $MarginContainer/VBoxContainer2/HIGHSCORE
+onready var player_name = $MarginContainer/VBoxContainer2/VBoxContainer/Play
 
 ###########
 #VARIABLES#
