@@ -84,7 +84,7 @@ __meta__ = {
 }
 
 [node name="Combo" type="RichTextLabel" parent="CanvasLayer"]
-margin_left = 208.0
+margin_left = 192.0
 margin_top = 32.0
 margin_right = 224.0
 margin_bottom = 48.0
