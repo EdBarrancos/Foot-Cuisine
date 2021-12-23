@@ -6,6 +6,7 @@ extends Node2D
 
 var kitchen = preload("res://Prototype/Scenes/Kitchen/Kitchen.tscn")
 var mainMenu = preload("res://Prototype/Scenes/MainMenu.tscn")
+var mainMenu_W_Name = preload("res://Prototype/Scenes/MainMenu_W_Name.tscn")
 
 onready var scoreLabel = $CanvasLayer/Score
 onready var scoreTracker = $ScoreTracker
@@ -27,6 +28,7 @@ export(int) var maxComboSize = 18
 
 var kitchenInst
 var mainMenuInst
+var mainMenu_W_NameInst
 
 ########
 #EVENTS#
@@ -39,7 +41,7 @@ func _ready():
 	UpdateLabel(timerLabel)
 	UpdateLabel(comboLabel)
 	
-	ChangeToMainMenu()
+	ChangeToMainMenu_W_Name()
 	timer.Stop()
 	
 func _process(_delta):
@@ -106,6 +108,9 @@ func ChangeToKitchen():
 	if mainMenuInst:
 		mainMenuInst.queue_free()
 		mainMenuInst = null
+	if mainMenu_W_NameInst:
+		mainMenu_W_NameInst.queue_free()
+		mainMenu_W_NameInst = null
 	kitchenInst = kitchen.instance()
 	add_child(kitchenInst)
 	kitchenInst.Init()
@@ -124,6 +129,9 @@ func ChangeToMainMenu():
 	if kitchenInst:
 		kitchenInst.queue_free()
 		kitchenInst = null
+	if mainMenu_W_NameInst:
+		mainMenu_W_NameInst.queue_free()
+		mainMenu_W_NameInst = null
 	mainMenuInst = mainMenu.instance()
 	add_child(mainMenuInst)
 	
@@ -134,6 +142,27 @@ func ChangeToMainMenu():
 	mainMenuInst.highScoreLabel.set_text(str("\t\tHIGHSCORE\n\t\t\t\t\t\t",scoreTracker.MaxScore))
 	musicPlayer.ChangeMusic(musicPlayer.tracks.menu)
 
+func ChangeToMainMenu_W_Name():
+	End()
+	scoreLabel.visible = false
+	comboLabel.visible = false
+	timerLabel.visible = false
+	
+	if kitchenInst:
+		kitchenInst.queue_free()
+		kitchenInst = null
+	if mainMenuInst:
+		mainMenuInst.queue_free()
+		mainMenuInst = null
+	mainMenu_W_NameInst = mainMenu_W_Name.instance()
+	add_child(mainMenu_W_NameInst)
+	
+	mainMenu_W_NameInst.Init()
+	
+	mainMenu_W_NameInst.connect("play", self, "_on_MainMenu_play")
+	
+	mainMenu_W_NameInst.highScoreLabel.set_text(str("\t\tHIGHSCORE\n\t\t\t\t\t\t",scoreTracker.MaxScore))
+	musicPlayer.ChangeMusic(musicPlayer.tracks.menu)
 
 
 func _on_ScoreTracker_score():

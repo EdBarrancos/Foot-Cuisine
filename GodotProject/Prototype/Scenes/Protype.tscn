@@ -60,10 +60,9 @@ environment = SubResource( 1 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Score" type="RichTextLabel" parent="CanvasLayer"]
-margin_left = 184.0
-margin_top = 16.0
-margin_right = 240.0
-margin_bottom = 30.0
+margin_left = 176.0
+margin_right = 232.0
+margin_bottom = 14.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "score. 0"
 scroll_active = false
@@ -72,10 +71,9 @@ __meta__ = {
 }
 
 [node name="Timer" type="RichTextLabel" parent="CanvasLayer"]
-margin_left = 24.0
-margin_top = 16.0
-margin_right = 72.0
-margin_bottom = 30.0
+margin_left = 16.0
+margin_right = 64.0
+margin_bottom = 14.0
 custom_fonts/normal_font = SubResource( 5 )
 text = "0.00"
 scroll_active = false
@@ -85,9 +83,9 @@ __meta__ = {
 
 [node name="Combo" type="RichTextLabel" parent="CanvasLayer"]
 margin_left = 192.0
-margin_top = 32.0
+margin_top = 16.0
 margin_right = 224.0
-margin_bottom = 48.0
+margin_bottom = 32.0
 custom_fonts/normal_font = SubResource( 6 )
 text = "C"
 fit_content_height = true
