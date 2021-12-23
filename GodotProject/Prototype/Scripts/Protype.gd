@@ -10,12 +10,13 @@ var mainMenu_W_Name = preload("res://Prototype/Scenes/MainMenu_W_Name.tscn")
 
 onready var scoreLabel = $CanvasLayer/Score
 onready var scoreTracker = $ScoreTracker
-onready var comboLabel = $CanvasLayer/Combo
+onready var comboLabel = $CanvasLayer/Combo/Combo
 
 onready var timerLabel = $CanvasLayer/Timer
 onready var timer = $Timer
 
 onready var musicPlayer = $MusicManger
+onready var animPlayer = $AnimationPlayer
 
 
 
@@ -174,7 +175,10 @@ func ChangeToMainMenu_W_Name():
 func _on_ScoreTracker_score():
 	if scoreTracker.combo == 1:
 		musicPlayer.ChangeMusic(musicPlayer.tracks.g0)
+		animPlayer.play("ComboReset")
 	elif scoreTracker.combo > 1 and scoreTracker.combo <=4:
 		musicPlayer.ChangeMusic(musicPlayer.tracks.g1)
+		animPlayer.play("Combo")
 	elif scoreTracker.combo > 4:
 		musicPlayer.ChangeMusic(musicPlayer.tracks.g2)
+		animPlayer.play("Combo")

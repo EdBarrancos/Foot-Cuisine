@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Prototype/SoundAssets/Music/Game2.wav" type="AudioStream" id=1]
 [ext_resource path="res://Prototype/Scripts/Protype.gd" type="Script" id=2]
@@ -51,6 +51,79 @@ outline_size = 1
 outline_color = Color( 0.486275, 0.247059, 0.345098, 1 )
 font_data = ExtResource( 6 )
 
+[sub_resource type="Animation" id=7]
+resource_name = "Combo"
+length = 0.1
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Combo:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.025, 0.075 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 60.7, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/Combo:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.025, 0.075, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1.583 ), Vector2( 1.704, 0.787 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "ComboReset"
+length = 0.1
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Combo:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.075, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.802, 0.387 ), Vector2( 0.903, 1.481 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Combo:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/Combo:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
 [node name="Protoype" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -81,11 +154,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Combo" type="RichTextLabel" parent="CanvasLayer"]
-margin_left = 192.0
-margin_top = 16.0
-margin_right = 224.0
-margin_bottom = 32.0
+[node name="Combo" type="Node2D" parent="CanvasLayer"]
+position = Vector2( 192, 24 )
+
+[node name="Combo" type="RichTextLabel" parent="CanvasLayer/Combo"]
+margin_left = -8.0
+margin_top = -8.0
+margin_right = 24.0
+margin_bottom = 8.0
 custom_fonts/normal_font = SubResource( 6 )
 text = "C"
 fit_content_height = true
@@ -128,6 +204,11 @@ bus = "Music"
 [node name="Game2" type="AudioStreamPlayer" parent="MusicManger"]
 stream = ExtResource( 1 )
 bus = "Music"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Combo = SubResource( 7 )
+anims/ComboReset = SubResource( 9 )
+anims/RESET = SubResource( 8 )
 
 [connection signal="score" from="ScoreTracker" to="." method="_on_ScoreTracker_score"]
 [connection signal="end_timer" from="Timer" to="." method="_on_Timer_end_timer"]
