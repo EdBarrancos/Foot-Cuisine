@@ -79,6 +79,12 @@ func Start():
 	inGame = true
 
 func End():
+	if scoreTracker.GetScore() > 0:
+		SilentWolf.Scores.persist_score(Global.pName, scoreTracker.GetScore())
+	
+	yield(SilentWolf.Scores.get_high_scores(), "sw_scores_received")
+	print("Scores: " + str(SilentWolf.Scores.scores))
+	
 	scoreTracker.EndGame()
 	if kitchenInst:
 		kitchenInst.EndGame()
