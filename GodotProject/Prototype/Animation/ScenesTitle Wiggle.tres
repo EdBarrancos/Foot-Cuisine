@@ -1,0 +1,19 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+resource_name = "Title Wiggle"
+length = 1.2
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("MarginContainer/VBoxContainer2/MarginContainer/Title3:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.25, 0.35, 0.45, 0.5, 0.6, 0.75, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1 ), Vector2( 2, 0.7 ), Vector2( 0.7, 1.8 ), Vector2( 1.5, 0.9 ), Vector2( 0.9, 1.4 ), Vector2( 1.3, 1 ), Vector2( 1, 1 ), Vector2( 0.8, 1.2 ), Vector2( 1.2, 0.9 ), Vector2( 1, 1 ), Vector2( 0.95, 1.1 ), Vector2( 1, 1 ) ]
+}
