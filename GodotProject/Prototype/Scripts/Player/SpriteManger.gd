@@ -55,7 +55,7 @@ func Stretch():
 func StopStretch():
 	sprite.set_scale(Vector2(1,1))
 	
-func _process(delta):
+func _process(_delta):
 	if squashing:
 		if 1 + squashFactorX > MAXSQUASH_X:
 			squashFactorX = MAXSQUASH_X - 1

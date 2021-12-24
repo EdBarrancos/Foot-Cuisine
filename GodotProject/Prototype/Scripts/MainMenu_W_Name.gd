@@ -22,7 +22,7 @@ func Init():
 	pass # Replace with function body.
 
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		if player_name.text != "":
 			pName = player_name.text.to_upper()

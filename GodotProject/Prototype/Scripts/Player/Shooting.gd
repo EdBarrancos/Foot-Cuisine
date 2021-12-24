@@ -26,7 +26,7 @@ var player
 func Init(p):
 	player = p
 	
-func _process(delta):
+func _process(_delta):
 	GetInput()
 
 func GetInput():

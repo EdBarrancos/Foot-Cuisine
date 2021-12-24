@@ -30,7 +30,7 @@ func Init(Player):
 	ResetVelocity()
 
 
-func _process(delta):
+func _process(_delta):
 	GetInput()
 	
 	

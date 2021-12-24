@@ -18,8 +18,6 @@ onready var height = 224
 
 onready var playerInitialPosition = Vector2(32,192)
 
-signal moved
-
 ########
 #EVENTS#
 ########
