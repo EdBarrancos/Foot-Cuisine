@@ -8,7 +8,7 @@ var kitchen = preload("res://Prototype/Scenes/Kitchen/Kitchen.tscn")
 var mainMenu = preload("res://Prototype/Scenes/MainMenu.tscn")
 var mainMenu_W_Name = preload("res://Prototype/Scenes/MainMenu_W_Name.tscn")
 
-onready var scoreLabel = $CanvasLayer/Score
+onready var scoreLabel = $CanvasLayer/Score/Score
 onready var scoreTracker = $ScoreTracker
 onready var comboLabel = $CanvasLayer/Combo/Combo
 
@@ -17,6 +17,7 @@ onready var timer = $Timer
 
 onready var musicPlayer = $MusicManger
 onready var animPlayer = $AnimationPlayer
+onready var animPlayerScore = $AnimPlayerScore
 
 
 
@@ -179,6 +180,8 @@ func _on_ScoreTracker_score():
 	elif scoreTracker.combo > 1 and scoreTracker.combo <=4:
 		musicPlayer.ChangeMusic(musicPlayer.tracks.g1)
 		animPlayer.play("Combo")
+		animPlayerScore.play("ScenesScore")
 	elif scoreTracker.combo > 4:
 		musicPlayer.ChangeMusic(musicPlayer.tracks.g2)
 		animPlayer.play("Combo")
+		animPlayerScore.play("ScenesScore")
