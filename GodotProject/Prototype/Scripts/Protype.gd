@@ -84,9 +84,6 @@ func End():
 	if scoreTracker.GetScore() > 0:
 		SilentWolf.Scores.persist_score(Global.pName, scoreTracker.GetScore())
 	
-	yield(SilentWolf.Scores.get_high_scores(), "sw_scores_received")
-	print("Scores: " + str(SilentWolf.Scores.scores))
-	
 	scoreTracker.EndGame()
 	if kitchenInst:
 		kitchenInst.EndGame()
@@ -147,7 +144,7 @@ func ChangeToMainMenu():
 	
 	mainMenuInst.connect("play", self, "_on_MainMenu_play")
 	
-	mainMenuInst.highScoreLabel.set_text(str("\t\tHIGHSCORE\n\t\t\t\t\t\t",scoreTracker.MaxScore))
+	#mainMenuInst.highScoreLabel.set_text(str("\t\tHIGHSCORE\n\t\t\t\t\t\t",scoreTracker.MaxScore))
 	musicPlayer.ChangeMusic(musicPlayer.tracks.menu)
 
 func ChangeToMainMenu_W_Name():
@@ -169,7 +166,7 @@ func ChangeToMainMenu_W_Name():
 	
 	mainMenu_W_NameInst.connect("play", self, "_on_MainMenu_play")
 	
-	mainMenu_W_NameInst.highScoreLabel.set_text(str("\t\tHIGHSCORE\n\t\t\t\t\t\t",scoreTracker.MaxScore))
+	#mainMenu_W_NameInst.highScoreLabel.set_text(str("\t\tHIGHSCORE\n\t\t\t\t\t\t",scoreTracker.MaxScore))
 	musicPlayer.ChangeMusic(musicPlayer.tracks.menu)
 
 
