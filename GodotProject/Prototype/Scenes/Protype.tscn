@@ -222,6 +222,9 @@ __meta__ = {
 stream = ExtResource( 4 )
 bus = "Sound Effects"
 
+[node name="ComboReset" type="Timer" parent="ScoreTracker"]
+wait_time = 4.0
+
 [node name="Timer" type="Node2D" parent="."]
 script = ExtResource( 5 )
 DEFAULTTIME = 35
@@ -257,5 +260,6 @@ anims/Score = ExtResource( 10 )
 anims/ScenesScore = ExtResource( 10 )
 
 [connection signal="score" from="ScoreTracker" to="." method="_on_ScoreTracker_score"]
+[connection signal="timeout" from="ScoreTracker/ComboReset" to="ScoreTracker" method="_on_ComboReset_timeout"]
 [connection signal="end_timer" from="Timer" to="." method="_on_Timer_end_timer"]
 [connection signal="timeout" from="Timer/Timer" to="Timer" method="_on_Timer_timeout"]
