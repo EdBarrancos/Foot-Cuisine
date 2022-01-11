@@ -1,6 +1,7 @@
 # Foot Cuising
 
 **Author** Eduardo Barrancos
+
 **Game Engine** Godot
 
 ## Short Description
