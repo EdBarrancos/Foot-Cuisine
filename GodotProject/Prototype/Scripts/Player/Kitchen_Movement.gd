@@ -85,6 +85,7 @@ func Move():
 		
 	player.set_linear_velocity(velocity.normalized()*holdMove)
 	player.Moved()
+	player.level.get_parent().scoreTracker.ResetCombo()
 	
 func ResetVelocity():
 	velocity = Vector2.ZERO
