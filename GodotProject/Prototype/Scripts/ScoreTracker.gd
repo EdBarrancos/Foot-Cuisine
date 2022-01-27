@@ -51,6 +51,7 @@ func FoodScore():
 func EndGame():
 	if score > MaxScore:
 		MaxScore = score
+	comboReset.stop()
 	
 #######
 #COMBO#
