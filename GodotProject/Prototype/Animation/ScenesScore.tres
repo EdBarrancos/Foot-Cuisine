@@ -28,3 +28,15 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 0.564, 1.435 ), Vector2( 1.73, 0.646 ), Vector2( 0.847, 1.247 ), Vector2( 1, 1 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/Flash:material:shader_param/flash_modifier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
