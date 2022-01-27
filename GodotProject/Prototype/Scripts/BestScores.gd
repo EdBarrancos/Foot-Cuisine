@@ -16,19 +16,26 @@ onready var scores = [$HSplitContainer/VBoxContainer2/Label,$HSplitContainer/VBo
 ########
 
 func _ready():
+	UpdateScores()
+
+#func _process(delta):
+#   pass
+
+func UpdateScores():
 	yield(SilentWolf.Scores.get_high_scores(3), "sw_scores_received")
 	for score in SilentWolf.Scores.scores.size():
 		if SilentWolf.Scores.scores[score].player_name:
 			names[score].text = SilentWolf.Scores.scores[score].player_name
 			scores[score].text = str(SilentWolf.Scores.scores[score].score)
 		else:
-			names[score].text = ""
-			scores[score].text = ""
-
-#func _process(delta):
-#   pass
+			names[score].text = "None"
+			scores[score].text = "0"
 
 
 ##############
 #MISCELANIOUS#
 ##############
+
+
+func _on_Timer_timeout():
+	UpdateScores()
