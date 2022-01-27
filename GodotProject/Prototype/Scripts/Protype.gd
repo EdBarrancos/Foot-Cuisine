@@ -19,7 +19,7 @@ onready var musicPlayer = $MusicManger
 onready var animPlayer = $AnimationPlayer
 onready var animPlayerScore = $AnimPlayerScore
 
-
+onready var flashShader = $CanvasLayer/Flash
 
 ###########
 #VARIABLES#
@@ -170,10 +170,11 @@ func ChangeToMainMenu_W_Name():
 	musicPlayer.ChangeMusic(musicPlayer.tracks.menu)
 
 
-func _on_ScoreTracker_score():
+func _on_ScoreTracker_score(previous_combo):
 	if scoreTracker.combo == 1:
 		musicPlayer.ChangeMusic(musicPlayer.tracks.g0)
-		animPlayer.play("ComboReset")
+		if previous_combo != 1:
+			animPlayer.play("ComboReset")
 	elif scoreTracker.combo > 1 and scoreTracker.combo <=4:
 		musicPlayer.ChangeMusic(musicPlayer.tracks.g1)
 		animPlayer.play("Combo")

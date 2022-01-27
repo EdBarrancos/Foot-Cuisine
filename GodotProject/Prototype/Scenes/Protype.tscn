@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Prototype/SoundAssets/Music/Game2.wav" type="AudioStream" id=1]
 [ext_resource path="res://Prototype/Scripts/Protype.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Prototype/SoundAssets/Music/Assets_Sounds_Game1N.wav" type="AudioStream" id=8]
 [ext_resource path="res://Prototype/SoundAssets/Music/Assets_Sounds_Game0N.wav" type="AudioStream" id=9]
 [ext_resource path="res://Prototype/Animation/ScenesScore.tres" type="Animation" id=10]
+[ext_resource path="res://icon.png" type="Texture" id=11]
 [ext_resource path="res://Prototype/Scripts/MusicManger.gd" type="Script" id=12]
 
 [sub_resource type="Gradient" id=2]
@@ -51,6 +52,24 @@ size = 12
 outline_size = 1
 outline_color = Color( 0.486275, 0.247059, 0.345098, 1 )
 font_data = ExtResource( 6 )
+
+[sub_resource type="Shader" id=10]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color: hint_color = vec4(1.0);
+uniform float flash_modifier: hint_range(0.0, 1.0);
+
+void fragment(){
+	vec4 color = texture(TEXTURE, UV);
+	vec4 screen_color = texture(SCREEN_TEXTURE, SCREEN_UV);
+	color.rgba = mix(screen_color.rgba,flash_color.rgba,flash_modifier);
+	COLOR = color;
+}"
+
+[sub_resource type="ShaderMaterial" id=11]
+shader = SubResource( 10 )
+shader_param/flash_color = Color( 0.921569, 0.419608, 0.435294, 1 )
+shader_param/flash_modifier = 0.0
 
 [sub_resource type="Animation" id=7]
 resource_name = "Combo"
@@ -109,6 +128,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/Flash:material:shader_param/flash_modifier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.025, 0.075, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.3, 0.7, 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/Flash:material:shader_param/flash_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.921569, 0.419608, 0.435294, 1 ), Color( 0.921569, 0.419608, 0.435294, 1 ) ]
+}
 
 [sub_resource type="Animation" id=8]
 length = 0.001
@@ -159,6 +202,30 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 0.564, 1.435 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CanvasLayer/Flash:material:shader_param/flash_modifier")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CanvasLayer/Flash:material:shader_param/flash_color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.921569, 0.419608, 0.435294, 1 ) ]
 }
 
 [node name="Protoype" type="Node2D"]
@@ -212,6 +279,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Flash" type="Sprite" parent="CanvasLayer"]
+material = SubResource( 11 )
+position = Vector2( 160, 160 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 11 )
+
 [node name="ScoreTracker" type="Node2D" parent="."]
 script = ExtResource( 3 )
 __meta__ = {
@@ -257,6 +330,7 @@ anims/RESET = SubResource( 8 )
 anims/Score = ExtResource( 10 )
 
 [node name="AnimPlayerScore" type="AnimationPlayer" parent="."]
+autoplay = "ScenesScore"
 anims/ScenesScore = ExtResource( 10 )
 
 [connection signal="score" from="ScoreTracker" to="." method="_on_ScoreTracker_score"]

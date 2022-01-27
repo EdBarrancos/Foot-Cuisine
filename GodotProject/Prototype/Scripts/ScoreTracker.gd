@@ -18,7 +18,7 @@ var MaxScore
 
 var rng = RandomNumberGenerator.new()
 
-signal score
+signal score(previous_combo)
 
 ########
 #EVENTS#
@@ -63,12 +63,14 @@ func _on_Kitchen_moved():
 	ResetCombo()
 	
 func ResetCombo():
+	var previous_combo = combo
 	combo = 1
-	emit_signal("score")
+	emit_signal("score", previous_combo)
 	
 func IncreaseCombo():
+	var previous_combo = combo
 	combo += 1
-	emit_signal("score")
+	emit_signal("score", previous_combo)
 	comboReset.start()
 
 
