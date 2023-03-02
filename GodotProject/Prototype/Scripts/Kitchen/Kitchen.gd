@@ -16,7 +16,7 @@ onready var tileSize = 18
 onready var width = 256
 onready var height = 224
 
-onready var playerInitialPosition = Vector2(32,192)
+export(Vector2) var playerInitialPosition = Vector2(128,112)
 
 ########
 #EVENTS#

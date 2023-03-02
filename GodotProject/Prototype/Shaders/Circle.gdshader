@@ -8,7 +8,7 @@ uniform float inner_alpha : hint_range(0,1) = 0.3f;
 
 void fragment(){
 	COLOR = circle_color;
-	COLOR.a = 0f;
+	COLOR.a = 0.0;
 	if (distance(circle_center, UV) < circle_size){
 		COLOR.a = inner_alpha;
 	}

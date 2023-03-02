@@ -12,7 +12,7 @@
 script = ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 32, 192 )
+position = Vector2( 128, 112 )
 
 [node name="FoodManager" type="Node2D" parent="."]
 script = ExtResource( 4 )
