@@ -126,11 +126,18 @@ func ResetHold():
 	chargeUpCharge = 0
 	
 func MultiplyVelocity(value):
-	if linearVelocitySaved:
-		rng.randomize()
-		var rotation_angle = rand_range(FLOOR_IMPULSE_OFFSET, CEILING_IMPULSE_OFFSET)
-		var force = player.linear_velocity.normalized().rotated(rotation_angle)
-		var multiplier = pow(value, MULTIPLYER)
-		if multiplier >= MAX_MULTIPLYER:
-			multiplier = MAX_MULTIPLYER
-		player.apply_impulse(Vector2.ZERO, force*multiplier)
+	rng.randomize()
+	var rotation_angle = rand_range(FLOOR_IMPULSE_OFFSET, CEILING_IMPULSE_OFFSET)
+	var force;
+	
+	if player.linear_velocity != Vector2.ZERO:
+		force = player.linear_velocity.normalized().rotated(rotation_angle)
+	else:
+		force = Vector2(
+			rng.randf_range(-1, 1),
+			rng.randf_range(-1, 1)
+		).normalized().rotated(rotation_angle)
+	var multiplier = pow(value, MULTIPLYER)
+	if multiplier >= MAX_MULTIPLYER:
+		multiplier = MAX_MULTIPLYER
+	player.apply_impulse(Vector2.ZERO, force*multiplier)

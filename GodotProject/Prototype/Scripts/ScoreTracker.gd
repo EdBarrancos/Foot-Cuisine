@@ -45,7 +45,6 @@ func FoodScore():
 	score += 1*combo
 	
 	IncreaseCombo()
-	
 	get_parent().kitchenInst.player.MultiplyVelocity(combo)
 	
 func EndGame():
