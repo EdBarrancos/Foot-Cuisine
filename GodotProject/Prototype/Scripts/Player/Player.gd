@@ -20,6 +20,9 @@ var level
 onready var updatePosition = false
 var newPosition
 
+signal moved
+signal kicked
+
 ########
 #EVENTS#
 ########
@@ -81,3 +84,11 @@ func _on_Player_body_entered(_body):
 
 func _on_Player_body_exited(_body):
 	spriteManager.StopSquash()
+
+
+func _on_Kitchen_Movement_moved():
+	emit_signal("moved")
+
+
+func _on_Shooting_kicked():
+	emit_signal("kicked")

@@ -99,3 +99,5 @@ bus = "Sound Effects"
 
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Player_body_exited"]
+[connection signal="moved" from="Kitchen_Movement" to="." method="_on_Kitchen_Movement_moved"]
+[connection signal="kicked" from="Shooting" to="." method="_on_Shooting_kicked"]

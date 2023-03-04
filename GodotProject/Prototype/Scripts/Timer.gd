@@ -15,6 +15,8 @@ var currentTime
 
 signal end_timer
 
+export(int) var THRESHOLD_COMBO = 4
+
 ########
 #EVENTS#
 ########
@@ -57,5 +59,5 @@ func _on_Timer_timeout():
 
 
 func _on_ScoreTracker_score(previous_combo):
-	if previous_combo >= 3:
+	if previous_combo >= THRESHOLD_COMBO:
 		UpdateTime(-1)

@@ -258,7 +258,7 @@ margin_top = -7.66551
 margin_right = 94.6312
 margin_bottom = 6.33449
 custom_fonts/normal_font = SubResource( 4 )
-text = "score. 0"
+text = "score 0"
 scroll_active = false
 
 [node name="Timer" type="RichTextLabel" parent="CanvasLayer"]

@@ -8,6 +8,8 @@ onready var aim = $Aim
 export(int) var MIN_AIM_WIDTH = 3
 export(int) var MAX_AIM_WIDTH = 8
 
+signal kicked
+
 ###########
 #VARIABLES#
 ###########
@@ -37,6 +39,8 @@ func _process(_delta):
 func GetInput():
 	if inAreaOfFood:
 		if Input.is_action_pressed("FIRE"):
+			emit_signal("kicked")
+			
 			holdFire += chargeUp + chargeUpCharge
 			chargeUpCharge += chargeUp/2
 			if holdFire > MAXHOLD:

@@ -31,6 +31,7 @@ export(float) var CEILING_IMPULSE_OFFSET = 1.5
 
 onready var rng = RandomNumberGenerator.new()
 
+signal moved
 
 ########
 #EVENTS#
@@ -66,6 +67,8 @@ func DeactivateSlowMo():
 
 func GetInput():
 	if Input.is_action_pressed("MOVE_NEXT"):
+		emit_signal("moved")
+		
 		holdMove += chargeUp + chargeUpCharge
 		chargeUpCharge += chargeUp/2
 		if holdMove >= MAXHOLD:

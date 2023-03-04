@@ -19,7 +19,8 @@ onready var rng = RandomNumberGenerator.new()
 
 var shrimp = preload("res://Prototype/Scenes/Food/Shrimp.tscn")
 var cheese = preload("res://Prototype/Scenes/Food/Cheese.tscn")
-onready var spawnableFood = [shrimp, cheese]
+var orange_slice = preload("res://Prototype/Scenes/Food/OrangeSlice.tscn")
+onready var spawnableFood = [shrimp, cheese, orange_slice]
 
 var firstQuadrant
 var secondQuadrant
