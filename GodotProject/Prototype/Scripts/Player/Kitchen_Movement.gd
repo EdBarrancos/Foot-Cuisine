@@ -23,6 +23,14 @@ onready var aim = $Aim
 export(int) var MIN_AIM_WIDTH = 3
 export(int) var MAX_AIM_WIDTH = 8
 
+export(int) var MULTIPLYER = 2
+export(int) var MAX_MULTIPLYER = 150
+
+export(float) var FLOOR_IMPULSE_OFFSET = -1.5
+export(float) var CEILING_IMPULSE_OFFSET = 1.5
+
+onready var rng = RandomNumberGenerator.new()
+
 
 ########
 #EVENTS#
@@ -115,14 +123,11 @@ func ResetHold():
 	chargeUpCharge = 0
 	
 func MultiplyVelocity(value):
-	if value > 1.5:
-		value = 1.5
-	if slowMoActive:
-		linearVelocitySaved *= value
-		if linearVelocitySaved.length() > MAXVELOCITY:
-			linearVelocitySaved.clamped(MAXVELOCITY)
-	else:
-		var newVel = player.get_linear_velocity()*value
-		if newVel.length() > MAXVELOCITY:
-			newVel.clamped(MAXVELOCITY)
-		player.set_linear_velocity(newVel)
+	if linearVelocitySaved:
+		rng.randomize()
+		var rotation_angle = rand_range(FLOOR_IMPULSE_OFFSET, CEILING_IMPULSE_OFFSET)
+		var force = player.linear_velocity.normalized().rotated(rotation_angle)
+		var multiplier = pow(value, MULTIPLYER)
+		if multiplier >= MAX_MULTIPLYER:
+			multiplier = MAX_MULTIPLYER
+		player.apply_impulse(Vector2.ZERO, force*multiplier)

@@ -65,6 +65,8 @@ chargeUp = 3.0
 slowMo = 4.0
 MIN_AIM_WIDTH = 4
 MAX_AIM_WIDTH = 10
+MULTIPLYER = 3
+MAX_MULTIPLYER = 200
 
 [node name="Aim" type="Line2D" parent="Kitchen_Movement"]
 default_color = Color( 1, 0.964706, 0.827451, 0.588235 )
