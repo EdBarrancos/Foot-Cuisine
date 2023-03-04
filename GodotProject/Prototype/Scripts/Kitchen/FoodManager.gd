@@ -7,11 +7,13 @@ extends Node2D
 var foodList : Array
 onready var currentFoodTarget = 0
 
-export(int) var maxNumberOfFood = 6
-export(int) var lowNumberOfFood = 2
+export(int) var maxNumberOfFood = 10
+export(int) var lowNumberOfFood = 4
+export(int) var minNumberOfFood = 2
  
 var level
 
+signal min_food(current, target)
 signal low_food
 signal good_food
 
@@ -58,7 +60,9 @@ func SpawnFood(foodInstance, pos):
 
 func DestroyFood(food):
 	food.queue_free()
-	if GetCurrentNumberOfFood() <= lowNumberOfFood:
+	if GetCurrentNumberOfFood() < minNumberOfFood:
+		emit_signal("min_food",GetCurrentNumberOfFood(), minNumberOfFood)
+	elif GetCurrentNumberOfFood() <= lowNumberOfFood:
 		emit_signal("low_food")
 
 func InitAllFood():

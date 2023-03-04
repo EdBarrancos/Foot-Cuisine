@@ -51,4 +51,5 @@ wait_time = 2.267
 
 [connection signal="good_food" from="FoodManager" to="Spawner" method="_on_FoodManager_good_food"]
 [connection signal="low_food" from="FoodManager" to="Spawner" method="_on_FoodManager_low_food"]
+[connection signal="min_food" from="FoodManager" to="Spawner" method="_on_FoodManager_min_food"]
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_Timer_timeout"]

@@ -86,3 +86,9 @@ func _on_FoodManager_good_food():
 
 func _on_FoodManager_low_food():
 	SpeedUp()
+
+
+
+func _on_FoodManager_min_food(current, target):
+	for i in range(target - current):
+		Spawn()
