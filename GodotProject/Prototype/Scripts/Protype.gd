@@ -67,6 +67,9 @@ func _process(_delta):
 		elif mainMenuInst:
 			End()
 			get_tree().quit()
+		elif mainMenu_W_NameInst:
+			End()
+			get_tree().quit()
 	
 func _input(event):
 	if event.is_action_pressed("FULL_SCREEN"):
