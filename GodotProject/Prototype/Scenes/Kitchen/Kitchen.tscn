@@ -37,10 +37,10 @@ __meta__ = {
 script = ExtResource( 7 )
 
 [node name="Caldron" parent="CladronManager" instance=ExtResource( 6 )]
-position = Vector2( 8, 104 )
+position = Vector2( 56, 56 )
 
 [node name="Caldron2" parent="CladronManager" instance=ExtResource( 6 )]
-position = Vector2( 248, 120 )
+position = Vector2( 200, 168 )
 
 [node name="Spawner" type="Node2D" parent="."]
 script = ExtResource( 8 )

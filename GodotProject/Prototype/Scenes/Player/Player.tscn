@@ -29,7 +29,6 @@ shader_param/useTexture = null
 radius = 8.0
 
 [node name="Player" type="RigidBody2D"]
-collision_layer = 5
 collision_mask = 5
 physics_material_override = SubResource( 2 )
 gravity_scale = 0.0
@@ -64,11 +63,21 @@ MAXHOLD = 275.0
 MAXVELOCITY = 315.0
 chargeUp = 3.0
 slowMo = 4.0
+MIN_AIM_WIDTH = 4
+MAX_AIM_WIDTH = 10
+
+[node name="Aim" type="Line2D" parent="Kitchen_Movement"]
+default_color = Color( 1, 0.964706, 0.827451, 0.588235 )
 
 [node name="Shooting" type="Node2D" parent="."]
 script = ExtResource( 4 )
+MIN_AIM_WIDTH = 4
+MAX_AIM_WIDTH = 10
 MAXHOLD = 275.0
 chargeUp = 4.0
+
+[node name="Aim" type="Line2D" parent="Shooting"]
+default_color = Color( 0.415686, 0.262745, 0.6, 0.588235 )
 
 [node name="AudioManager" type="Node2D" parent="."]
 script = ExtResource( 6 )

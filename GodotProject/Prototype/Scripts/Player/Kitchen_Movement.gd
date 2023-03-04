@@ -4,35 +4,40 @@ extends Node2D
 #VARIABLES#
 ###########
 
-export(float) var MAXHOLD = 250
-export(float) var MAXVELOCITY = 300
+export(float) var MAXHOLD = 250.0
+export(float) var MAXVELOCITY = 300.0
 onready var velocity = Vector2.ZERO
 onready var holdMove = 0
-export(float) var chargeUp = 2
+export(float) var chargeUp = 2.0
 onready var chargeUpCharge = 0
 
 var linearVelocitySaved
 var angularVelocitySaved
-export(float) var slowMo = 3
+export(float) var slowMo = 3.0
 
 var player
 
 onready var slowMoActive = false
+
+onready var aim = $Aim
+export(int) var MIN_AIM_WIDTH = 3
+export(int) var MAX_AIM_WIDTH = 8
 
 
 ########
 #EVENTS#
 ########
 
+func _ready():
+	aim.add_point(Vector2.ZERO)
+
 func Init(Player):
 	player = Player
 	
 	ResetVelocity()
 
-
 func _process(_delta):
 	GetInput()
-	
 	
 func ActivateSlowMo():
 	slowMoActive = true
@@ -57,7 +62,10 @@ func GetInput():
 		chargeUpCharge += chargeUp/2
 		if holdMove >= MAXHOLD:
 			holdMove = MAXHOLD
-			
+		
+		SetAim(
+			to_local(get_viewport().get_mouse_position()),
+			holdMove)
 		player.spriteManager.Turn(get_viewport().get_mouse_position())
 		player.spriteManager.StartSquash(holdMove/MAXHOLD)
 		
@@ -69,7 +77,19 @@ func GetInput():
 		Move()
 		ResetVelocity()
 		ResetHold()
+		ResetAim()
 		player.audioManager.PlayMove()
+		
+func SetAim(point, current_hold):
+	ResetAim()
+	aim.add_point(point)
+	
+	var target_width = (MAX_AIM_WIDTH - MIN_AIM_WIDTH) * current_hold / MAXHOLD
+	aim.width = target_width
+
+func ResetAim():
+	while aim.get_point_count() > 1:
+		aim.remove_point(aim.get_point_count() - 1)
 		
 ##########
 #VELOCITY#

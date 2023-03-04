@@ -18,7 +18,7 @@ export(float) var squashIncrease = 0.015
 var squashFactorX
 var squashFactorY
 
-export(float) var MaxAngleOffSet = 2
+export(float) var MaxAngleOffSet = 2.0
 var angleOffSet
 onready var shaking = false
 var rng = RandomNumberGenerator.new()

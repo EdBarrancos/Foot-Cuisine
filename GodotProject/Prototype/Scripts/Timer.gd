@@ -54,3 +54,8 @@ func UpdateTime(value):
 
 func _on_Timer_timeout():
 	UpdateTime(1)
+
+
+func _on_ScoreTracker_score(previous_combo):
+	if previous_combo >= 3:
+		UpdateTime(-1)

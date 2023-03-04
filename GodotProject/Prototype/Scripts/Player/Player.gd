@@ -25,7 +25,8 @@ var newPosition
 ########
 
 func Moved():
-	level.emit_signal("moved")
+	#level.emit_signal("moved")
+	pass
 
 func Init(level_):
 	level = level_

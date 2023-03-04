@@ -4,7 +4,6 @@ extends Node2D
 #COMPONENTS#
 ############
 
-onready var highScoreLabel = $MarginContainer/VBoxContainer2/HIGHSCORE
 
 ###########
 #VARIABLES#

@@ -4,14 +4,18 @@ extends Node2D
 #COMPONENTS#
 ############
 
+onready var aim = $Aim
+export(int) var MIN_AIM_WIDTH = 3
+export(int) var MAX_AIM_WIDTH = 8
+
 ###########
 #VARIABLES#
 ###########
 
-export(float) var MAXHOLD = 250
+export(float) var MAXHOLD = 250.0
 onready var velocity = Vector2.ZERO
 onready var holdFire = 100
-export(float) var chargeUp = 2
+export(float) var chargeUp = 2.0
 onready var chargeUpCharge = 0
 
 onready var inAreaOfFood = false
@@ -25,6 +29,7 @@ var player
 
 func Init(p):
 	player = p
+	aim.add_point(Vector2.ZERO)
 	
 func _process(_delta):
 	GetInput()
@@ -34,16 +39,36 @@ func GetInput():
 		if Input.is_action_pressed("FIRE"):
 			holdFire += chargeUp + chargeUpCharge
 			chargeUpCharge += chargeUp/2
+			if holdFire > MAXHOLD:
+				holdFire = MAXHOLD
+			SetAim(
+				to_local(get_viewport().get_mouse_position()),
+				holdFire)
 		if Input.is_action_just_released("FIRE"):
 			velocity = get_viewport().get_mouse_position() - global_position
 			Shoot(GetTargetFood())
 			player.audioManager.PlayFireFood()
+			ResetAim()
+	else:
+		ResetAim()
 	
 func Shoot(target):
 	if target:
 		if holdFire > MAXHOLD:
 			holdFire = MAXHOLD
 		target.SetVelocity(velocity.normalized()*holdFire)
+		
+func SetAim(point, current_hold):
+	ResetAim()
+	aim.add_point(point)
+	
+	var target_width = (MAX_AIM_WIDTH - MIN_AIM_WIDTH) * current_hold / MAXHOLD
+	aim.width = target_width
+
+func ResetAim():
+	while aim.get_point_count() > 1:
+		aim.remove_point(aim.get_point_count() - 1)
+
 ################
 #UPDATING FOODS#
 ################

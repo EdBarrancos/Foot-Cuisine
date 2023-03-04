@@ -120,7 +120,7 @@ func ChangeToKitchen():
 	add_child(kitchenInst)
 	kitchenInst.Init()
 	
-	kitchenInst.connect("moved", scoreTracker, "_on_Kitchen_moved")
+	#kitchenInst.connect("moved", scoreTracker, "_on_Kitchen_moved")
 	
 	musicPlayer.ChangeMusic(musicPlayer.tracks.g0)
 	Start()
@@ -138,6 +138,8 @@ func ChangeToMainMenu():
 		mainMenu_W_NameInst.queue_free()
 		mainMenu_W_NameInst = null
 	mainMenuInst = mainMenu.instance()
+	print(mainMenuInst)
+	print("\nAHSBDASD\n")
 	add_child(mainMenuInst)
 	
 	mainMenuInst.Init()
