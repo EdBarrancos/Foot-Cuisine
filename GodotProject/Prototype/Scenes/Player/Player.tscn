@@ -36,6 +36,7 @@ contacts_reported = 1
 contact_monitor = true
 linear_damp = 0.0
 script = ExtResource( 3 )
+controller_raidus = 50
 
 [node name="SpriteManger" type="Node2D" parent="."]
 script = ExtResource( 5 )

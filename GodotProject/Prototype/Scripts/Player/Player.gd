@@ -4,6 +4,8 @@ extends RigidBody2D
 #COMPONENTS#
 ############
 
+export(int) var controller_raidus = 20
+
 onready var kitchen_movement = $Kitchen_Movement
 onready var shooting = $Shooting
 
@@ -56,7 +58,6 @@ func _integrate_forces(state):
 ##########
 
 func MultiplyVelocity(value):
-	print("hello")
 	kitchen_movement.MultiplyVelocity(value)
 
 #########

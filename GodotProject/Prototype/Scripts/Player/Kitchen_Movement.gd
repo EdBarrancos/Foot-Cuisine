@@ -4,6 +4,9 @@ extends Node2D
 #VARIABLES#
 ###########
 
+onready var controller = false
+var controller_last_position = Vector2.ZERO
+
 export(float) var MAXHOLD = 250.0
 export(float) var MAXVELOCITY = 300.0
 onready var velocity = Vector2.ZERO
@@ -36,9 +39,11 @@ signal moved
 ########
 #EVENTS#
 ########
-
 func _ready():
 	aim.add_point(Vector2.ZERO)
+	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
+	if Input.get_connected_joypads().size() >= 1:
+		SetController()
 
 func Init(Player):
 	player = Player
@@ -75,14 +80,14 @@ func GetInput():
 			holdMove = MAXHOLD
 		
 		SetAim(
-			to_local(get_viewport().get_mouse_position()),
+			to_local(get_global_mouse_position()),
 			holdMove)
-		player.spriteManager.Turn(get_viewport().get_mouse_position())
+		player.spriteManager.Turn(get_global_mouse_position())
 		player.spriteManager.StartSquash(holdMove/MAXHOLD)
 		
 	if Input.is_action_just_released("MOVE_NEXT"):
-		velocity = get_viewport().get_mouse_position() - global_position
-		player.spriteManager.Turn(get_viewport().get_mouse_position())
+		velocity = get_global_mouse_position() - global_position
+		player.spriteManager.Turn(get_global_mouse_position())
 		player.spriteManager.StopSquash()
 		player.spriteManager.Stretch()
 		Move()
@@ -90,6 +95,10 @@ func GetInput():
 		ResetHold()
 		ResetAim()
 		player.audioManager.PlayMove()
+	
+	var new_controller_last_position = Input.get_vector("LEFT", "RIGHT", "UP", "DOWN")
+	if new_controller_last_position != Vector2.ZERO:
+		controller_last_position = new_controller_last_position
 		
 func SetAim(point, current_hold):
 	ResetAim()
@@ -101,6 +110,25 @@ func SetAim(point, current_hold):
 func ResetAim():
 	while aim.get_point_count() > 1:
 		aim.remove_point(aim.get_point_count() - 1)
+
+func get_global_mouse_position():
+	print(controller)
+	if controller:
+		return controller_last_position.normalized() * get_parent().controller_raidus + global_position
+	else:
+		return get_viewport().get_mouse_position()
+	
+func SetController():
+	controller = true
+
+func SetKeyboard():
+	controller = false
+	
+func _on_joy_connection_changed(device_id, connected):
+	if connected:
+		SetController()
+	else:
+		SetKeyboard()
 		
 ##########
 #VELOCITY#

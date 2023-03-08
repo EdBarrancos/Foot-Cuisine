@@ -46,7 +46,7 @@ func _ready():
 	ChangeToMainMenu_W_Name()
 	timer.Stop()
 	
-func _process(_delta):
+func _process(_delta):	
 	if inGame:
 		scoreLabel.set_text(str("score ", scoreTracker.GetScore()))
 		timerLabel.set_text(str(timer.GetMinutes(),".", timer.GetSeconds()))
