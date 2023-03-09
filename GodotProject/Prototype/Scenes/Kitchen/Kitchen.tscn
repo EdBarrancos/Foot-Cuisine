@@ -323,7 +323,7 @@ wait_time = 2.267
 script = ExtResource( 9 )
 controller_movement_tutorial = "R1 + LEFT JOYSTICK to MOVE"
 keyboard_movement_tutorial = "RIGHT button to MOVE"
-controller_shooting_tutorial = "L1 + LEFT JOYSTICK to MOVE"
+controller_shooting_tutorial = "L1 + LEFT JOYSTICK to KICK"
 keyboard_shooting_tutorial = "LEFT button to KICK"
 
 [node name="MoveTutorial" type="RichTextLabel" parent="CanvasLayer"]

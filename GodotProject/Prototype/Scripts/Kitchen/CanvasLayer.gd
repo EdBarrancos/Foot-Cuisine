@@ -27,6 +27,8 @@ func _ready():
 	Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
 	if Input.get_connected_joypads().size() >= 1:
 		SetController()
+	else:
+		SetKeyboard()
 
 
 func SetController():
