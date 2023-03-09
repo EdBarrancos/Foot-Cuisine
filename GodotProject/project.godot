@@ -20,7 +20,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="MiniJam94"
+config/name="Foot Cuisine"
 run/main_scene="res://Prototype/Scenes/Protype.tscn"
 config/icon="res://IconFootCuisine.png"
 config/macos_native_icon="res://IconFootCuisine.icns"
