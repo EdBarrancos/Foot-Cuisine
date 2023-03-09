@@ -321,22 +321,28 @@ wait_time = 2.267
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource( 9 )
+controller_movement_tutorial = "R1 + LEFT JOYSTICK to MOVE"
+keyboard_movement_tutorial = "RIGHT button to MOVE"
+controller_shooting_tutorial = "L1 + LEFT JOYSTICK to MOVE"
+keyboard_shooting_tutorial = "LEFT button to KICK"
 
 [node name="MoveTutorial" type="RichTextLabel" parent="CanvasLayer"]
-margin_left = 48.0
+margin_left = 16.0
 margin_top = 168.0
-margin_right = 208.0
+margin_right = 240.0
 margin_bottom = 184.0
+grow_horizontal = 2
+grow_vertical = 2
 custom_fonts/normal_font = SubResource( 29 )
-text = "RIGHT button to MOVE"
+bbcode_enabled = true
 
 [node name="KickTutorial" type="RichTextLabel" parent="CanvasLayer"]
-margin_left = 48.0
+margin_left = 16.0
 margin_top = 184.0
-margin_right = 208.0
+margin_right = 240.0
 margin_bottom = 200.0
 custom_fonts/normal_font = SubResource( 30 )
-text = "LEFT button to KICK"
+bbcode_enabled = true
 
 [connection signal="kicked" from="Player" to="CanvasLayer" method="_on_Player_kicked"]
 [connection signal="moved" from="Player" to="CanvasLayer" method="_on_Player_moved"]
